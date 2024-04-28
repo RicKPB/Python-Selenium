@@ -1,0 +1,238 @@
+## Locators
+
+Sobre o mapeamentos de elementos da tela existem os locators, que dentro de uma automação é utilizado para achar os
+elementos na tela para poder realizar ações.
+
+
+## Estrutura de um elementos (HTML)
+
+   Tag  Atributo       Valor
+    |     |              |
+<input  class="input_error form_input" placeholder="Password" type="password"
+data-test="password" id="password" name="password" autocorrect="off"
+autocapitalize="none" value fdprocessedid="84hy06">
+
+Aqui temos um elemento aonde temos a tag <input> e dentro dessa tag ficam os atributos e seus valores aonde podemos ter
+varios atributos e valores dentro de uma tag.
+
+
+## Tipos de Locators
+
+Locators
+    - ID   primeiro a ser buscado mas caso não tenha teremos que usar outras forma
+    - NAME
+    - LINK_TEXT   para buscar links clicaveis dentro da pagina (https://google.com)
+    - PARTIAL_LINK_TEXT   uma parte do link para ele poder buscar e clicar (google)
+    - CLASS_NAME *elementos podem ter a mesma class
+    - TAG_NAME   a tag que é utilizada na parte do codigo
+
+LOCATORS CUSTOMIZAVEIS
+    - CSS_SELECTOR
+        - TAG AND ID
+        - TAG AND CLASS
+        - TAG AND ATTRIBUTE
+        - TAG, CLASS AND ATTRIBUTE
+        - INNER TEXT
+    - XPATH
+
+## Utilizando metodos de Locators
+
+<input  class="input_error form_input" placeholder="Password" type="password"
+data-test="password" id="password" name="password" autocorrect="off"
+autocapitalize="none" value fdprocessedid="84hy06">
+
+ - By.ID
+    * browser.find_element(By.ID, "password")
+
+ - By.NAME
+    * browser.find_element(By.NAME, "password")
+
+ - By.CLASS_NAME
+    encontra a primeira ocorrecia
+        * browser.find_element(By.CLASS_NAME, "input_error form_input")
+    retorna todas as ocorrencias
+        * browser.find_elements(By.CLASS_NAME, "input_error form_input")
+
+ - By.TAG_NAME
+    encontra a primeira ocorrencia
+        * browser.find_element(By.TAG_NAME, "input")
+    retorna todas as ocorrencias
+        * browser.find_elements(By.TAG_NAME, "input")
+
+ - By.CSS_SELECTOR
+    tag_name#id_value (tag é opcional)
+        * browser.find_element(By.CSS_SELECTOR, "input#password")
+        * browser.find_element(By.CSS_SELECTOR, "#password")
+
+    tag_name.class_value (tag é opcional)
+        * browser.find_element(By.CSS_SELECTOR, "input.input_error")
+        * browser.find_element(By.CSS_SELECTOR, ".input_error")
+
+    tag_name[attribute=value] (tag é opcional)
+        * browser.find_element(By.CSS_SELECTOR, "input[type=password]")
+        * browser.find_element(By.CSS_SELECTOR, "[type=password]")
+
+    tag_name.class_name[attribute=value]
+        * browser.find_element(By.CSS_SELECTOR, "input.input_error[type=password]")
+
+atributo de link                                             Link Text
+    |                                                            |
+<a href="https://twitter.com" target="_blank" rel="noreferrer">Twitter<a/>
+
+ - By.LINK_TEXT
+    * browser.find_element(By.LINK_TEXT, "Twitter")
+
+ - By.PARTIAL_LINK_TEXT
+    * browser.find_element(By.PARTIAL_LINK_TEXT, "Twi")
+
+
+## XPath
+
+    - XPath é uma sintaxe para definir partes de um documento XLM
+    - XPath pode ser usado para navegar por elementos e atributos em um documento XML
+    - XPath usa expressões de caminho para navegar em documentos XML
+    - XPath contém uma lib de funções padrão
+    - XPath é usado para localizar elementos em uma página web por meio do DOM
+    - XPath é o endereço do elemento em uma página
+
+
+    Absolute/Full XPath
+
+        - /html/body/div[2]/div[1]/div/div/form/input[3]
+
+    Relative/Partial XPath
+
+        METODO MAIS UTILIZADO, AONDE ELE MOSTRA QUE DENTRO DO COGIDO (//), DENTRO DE QUALQUER TAG (*), ELE ESTA PROCURANDO
+        O ID QUE FOI SOLICITADO.
+        - //*[@id="login-button"]
+
+        AULA XPATH NA PRATICA PASSA COMO FAZER BUSCA CRIANDO O PROPIRO XPATH
+
+
+## Comandos de Navegação
+
+    browser.
+        - get()
+        - maximize_window()
+        - refresh()
+        - back()
+        - forward()
+        - close()
+        - quit()
+
+## Comandos da Aplicação
+
+    browser.
+        - title -> Retorna o titulo da pagina
+        - current_url -> Retorna o endereço da url
+        - page_source -> Retorna o codigo fonte da pagina
+
+## Comandos Para Localizar Elementos
+
+    browser.
+        - find_element() -> Somente um elemento (Quando não é encontrado o element ele da erro)
+        - find_elements() -> Mais de um elemento (Quando não encontrado o element ele retorna uma lista vazia)
+
+## Comandos Condicionais
+
+    element.
+        - is_displayed() -> Dizer se o elemento esta sendo mostrado na tela
+        - is_enabled() -> Dizer se o elementos esta habilitado ou não.
+        - is_selected() -> Dizer se o elemento esta selecionado ou não
+
+    Retorna True ou False
+
+## Comandos De Interação Com Elementos
+
+    element.
+        - click()
+        - send_keys()
+        - text
+        - get_attribute()
+
+## Comandos De Espera (Wait)
+
+    element.
+        - time.sleep() -> coloca a execução para dormir por um tempo definido como parametro (format sec)
+        - implicit_wait ->
+        - explicit_wait ->
+
+## Assert
+
+    - O assert sempre verifica se o retorno da condição é True
+
+        - assert numbers
+        - assert text
+        - assert text in string
+        - assert is_displayed/is_enable/is_selected
+
+## Comando Select
+
+    - Utilizado mais na parte de seleção de dropdown, ate podendo selecionar mais de um valor
+
+        - select_by_visible_text() -> Modo para pegar o text dentro do dropdown
+        - select_by_value -> Modo para pegar como o valor do dropdown
+        - select_by_index -> pega pelo valor do index do dropdown
+
+        - Em caso de um selector multiplo (2 ou mais), podemos usar o select_by_visible_text para cada selecao
+
+            - select_by_visible_text('Pizza')
+            - select_by_visible_text('Bonda')
+
+            - Exemplo de como seria dentro de um dropdown multiplo
+
+## Iframes
+
+    - Iframes são subpaginas dentro de paginas de um site, em caso de um site possuir
+    um iframe dentro de outro iframe temos que fazer uma conexao ando acessamos primeiro
+    iframe e depois o outro iframe, se no caso tentar executar antes de acessar ele nao
+    indentificara.
+
+
+## Seção 5 - Criando Primeiros Teste
+
+    - Login com usuario e senha validos
+    - Verificar se foi para a pagina de Products
+
+    - Adicao de produtos ao carrinho
+    - Adicionar um produto ao carrinho e verificar que foi
+    adicionado corretamente, voltar e adicionar mais um produto
+
+    - Fazer uma compra com 1 produtos no carrinho
+    - Verificar que a compra foi feita com sucesso
+
+    - Fazer uma compra com 2 produtos no carrinho
+    - Verificar que a compra foi feita com sucesso
+
+
+## Secao 6 - Pytest
+
+    - O Pytest ele é um framework de teste que permite escrever codigos de teste
+    usando a linguagem Python. Ele te ajuda a escrever casos de teste simples e
+    escalaveis para banco de dados, APIs ou interface do usuario
+
+        - Algumas das vantagens do Pytest sao:
+            - Muitoi facil de comecar devido a sua sintaxe simples e facil
+            - Pode executar testes em paralelo
+            - Podem executar um teste especifico ou um subconjunto de testes
+            - Detectar testes automaticamente
+            - Ignorar testes
+
+    - Intalacao - pip install pytest
+
+    - O Pytest indentifica quais sao os casos de teste automaticamente desde
+    que o nome dos metodos de teste estejam no seguinte formato:
+        - test_*.py
+        - *_test.py
+
+    - Documentacao - "https://docs.pytest.org/en/7.1.x/contents.html"
+
+
+    - Comandos/Dicas
+        - TERMINAL
+            - pytest <caminhoArquivo> -> para poder passar realizar o test
+            - pytest -v <caminhoArquivo> -> aumenta a verbosidade da mensagem do teste
+            - pytest <caminhoArquivo> -m nameMark -> rodar o test pelo mark
+
+        - CODIGO
+            - @pytest.mark.nameMark -> utilizado para criar marcacao par apoder utilizar nos testes
