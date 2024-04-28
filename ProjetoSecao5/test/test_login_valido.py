@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 driver = webdriver.Chrome()
 driver.implicitly_wait(5)
 driver.maximize_window()
-driver.get('https://www.saucedemo.com/inventory-item.html?id=4')
+driver.get('https://www.saucedemo.com')
 # ------------------------------------------------
 
 # -------- MAPEAMENTO DE ELEMENTOS -----------------

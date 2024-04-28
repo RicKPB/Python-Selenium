@@ -236,3 +236,5 @@ atributo de link                                             Link Text
 
         - CODIGO
             - @pytest.mark.nameMark -> utilizado para criar marcacao par apoder utilizar nos testes
+
+    - conftest ->
